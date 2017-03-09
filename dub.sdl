@@ -1,0 +1,11 @@
+name "owlnet"
+description "Distributed execution environment build tool inspired by mintnet."
+authors "JeongHoon Baek"
+copyright "Copyright © 2017, BlockchainOS foundation"
+homepage "https://www.blockchainos.org"
+license "GPL-3.0"
+
+// library dependancies
+// dependency "vibe-d" version="~>0.7.30"
+dependency "darg" version="~>0.0.4"
+dependency "io" version="~>0.0.8"
