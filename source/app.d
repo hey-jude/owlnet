@@ -73,7 +73,8 @@ import darg;
 alias Commands = AliasSeq!(
         helpCommand,
         displayVersion,
-        buildCommand,
+        createCommand,
+        startCommand,
         cleanCommand,
         initCommand,
         );

@@ -73,22 +73,13 @@ struct CreateOptions
     string command;
 }
 
-@Command("build")
-@Description("Runs a build.")
-struct BuildOptions
+@Command("start")
+@Description("Start test.")
+struct StartOptions
 {
     @Option("file", "f")
     @Help("Path to the build description.")
     string path;
-
-    @Option("dryrun", "n")
-    @Help("Don't make any functional changes. Just print what might happen.")
-    OptionFlag dryRun;
-
-    @Option("color")
-    @Help("When to colorize the output.")
-    @MetaVar("{auto,never,always}")
-    string color = "auto";
 
     @Option("verbose", "v")
     @Help("Display additional information such as how long each task took to"~
@@ -97,16 +88,12 @@ struct BuildOptions
 }
 
 @Command("clean")
-@Description("Deletes all build outputs.")
+@Description("Deletes all test.")
 struct CleanOptions
 {
     @Option("file", "f")
     @Help("Path to the build description.")
     string path;
-
-    @Option("dryrun", "n")
-    @Help("Don't make any functional changes. Just print what might happen.")
-    OptionFlag dryRun;
 
     @Option("color")
     @Help("When to colorize the output.")
@@ -127,13 +114,23 @@ struct InitOptions
     string dir = ".";
 }
 
+@Command("destroy")
+@Description("Destroy a directory with an initial build description.")
+struct DestroyOptions
+{
+    @Argument("dir", Multiplicity.optional)
+    @Help("Directory to initialize")
+    string dir = ".";
+}
+
 /**
  * List of all options structs.
  */
 alias OptionsList = AliasSeq!(
         HelpOptions,
         VersionOptions,
-        BuildOptions,
+        CreateOptions,
+        StartOptions,
         CleanOptions,
         InitOptions,
         );
