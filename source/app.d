@@ -74,9 +74,12 @@ alias Commands = AliasSeq!(
         helpCommand,
         displayVersion,
         createCommand,
-        startCommand,
-        cleanCommand,
+        destroyCommand,
         initCommand,
+        cleanCommand,
+        startCommand,
+        stopCommand,
+        restartCommand,
         );
 
 version (unittest)

@@ -50,14 +50,6 @@ struct VersionOptions
 @Description("Creates VMs.")
 struct CreateOptions
 {
-    @Option("file", "f")
-    @Help("Path to the build description.")
-    string path;
-
-    @Option("dryrun", "n")
-    @Help("Don't make any functional changes. Just print what might happen.")
-    OptionFlag dryRun;
-
     @Option("color")
     @Help("When to colorize the output.")
     @MetaVar("{auto,never,always}")
@@ -68,23 +60,31 @@ struct CreateOptions
           " complete.")
     OptionFlag verbose;
 
-    @Argument("command", Multiplicity.oneOrMore)
-    @Help("Command to get help on.")
-    string command;
+    @Argument("vmNames", Multiplicity.oneOrMore)
+    @Help("VM names.")
+    string[] vmNames;
 }
 
-@Command("start")
-@Description("Start test.")
-struct StartOptions
+@Command("destroy")
+@Description("Destroy VMs.")
+struct DestroyOptions
 {
+    @Argument("vmNames", Multiplicity.oneOrMore)
+    @Help("VM names.")
+    string[] vmNames;
+}
+
+@Command("init")
+@Description("Initializes a directory with an initial build description.")
+struct InitOptions
+{
+    @Argument("dir", Multiplicity.optional)
+    @Help("Directory to initialize")
+    string dir = ".";
+
     @Option("file", "f")
     @Help("Path to the build description.")
     string path;
-
-    @Option("verbose", "v")
-    @Help("Display additional information such as how long each task took to"~
-          " complete.")
-    OptionFlag verbose;
 }
 
 @Command("clean")
@@ -105,22 +105,46 @@ struct CleanOptions
     OptionFlag purge;
 }
 
-@Command("init")
-@Description("Initializes a directory with an initial build description.")
-struct InitOptions
+@Command("start")
+@Description("Start test.")
+struct StartOptions
 {
-    @Argument("dir", Multiplicity.optional)
-    @Help("Directory to initialize")
-    string dir = ".";
+    @Option("file", "f")
+    @Help("Path to the build description.")
+    string path;
+
+    @Option("verbose", "v")
+    @Help("Display additional information such as how long each task took to"~
+          " complete.")
+    OptionFlag verbose;
 }
 
-@Command("destroy")
-@Description("Destroy a directory with an initial build description.")
-struct DestroyOptions
+@Command("stop")
+@Description("Stop test.")
+struct StopOptions
 {
-    @Argument("dir", Multiplicity.optional)
-    @Help("Directory to initialize")
-    string dir = ".";
+    @Option("file", "f")
+    @Help("Path to the build description.")
+    string path;
+
+    @Option("verbose", "v")
+    @Help("Display additional information such as how long each task took to"~
+          " complete.")
+    OptionFlag verbose;
+}
+
+@Command("restart")
+@Description("Restart test.")
+struct RestartOptions
+{
+    @Option("file", "f")
+    @Help("Path to the build description.")
+    string path;
+
+    @Option("verbose", "v")
+    @Help("Display additional information such as how long each task took to"~
+          " complete.")
+    OptionFlag verbose;
 }
 
 /**
@@ -130,9 +154,12 @@ alias OptionsList = AliasSeq!(
         HelpOptions,
         VersionOptions,
         CreateOptions,
-        StartOptions,
-        CleanOptions,
+        DestroyOptions,
         InitOptions,
+        CleanOptions,
+        StartOptions,
+        StopOptions,
+        RestartOptions,
         );
 
 /**
