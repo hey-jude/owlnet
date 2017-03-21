@@ -11,6 +11,6 @@ buildType "debug-compatible" {
 
 // library dependancies
 // dependency "vibe-d" version="~>0.7.30"
-dependency "darg" version="~>0.0.4"
+// dependency "darg" version="~>0.0.4"
 dependency "io" version="~>0.0.8"
 dependency "backtrace-d" version="~>0.1.2"

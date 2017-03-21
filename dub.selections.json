@@ -3,7 +3,6 @@
 	"versions": {
 		"backtrace-d": "0.1.2",
 		"button": "0.1.2",
-		"darg": "0.0.4",
 		"diet-ng": "1.2.0",
 		"io": "0.0.8",
 		"libasync": "0.7.9",

@@ -1,0 +1,22 @@
+{
+	"authors": [
+		"Jason White"
+	],
+	"configurations": [
+		{
+			"name": "library",
+			"targetType": "library"
+		}
+	],
+	"importPaths": [
+		"source/"
+	],
+	"name": "darg",
+	"version": "0.0.4",
+	"license": "MIT",
+	"copyright": "Copyright © 2015-2016, Jason White",
+	"description": "D command line argument parser.",
+	"sourcePaths": [
+		"source/"
+	]
+}
