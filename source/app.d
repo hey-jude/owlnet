@@ -65,7 +65,7 @@ static import backtrace;
 import owlnet.cli;
 
 import std.meta : AliasSeq;
-
+import std.stdio : stderr;
 import io.text;
 import darg;
 

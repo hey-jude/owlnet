@@ -63,6 +63,9 @@ struct CreateOptions
     @Argument("vmNames", Multiplicity.oneOrMore)
     @Help("VM names.")
     string[] vmNames;
+
+    @Argument("args", Multiplicity.zeroOrMore)
+    const(string)[] args;
 }
 
 @Command("destroy")
