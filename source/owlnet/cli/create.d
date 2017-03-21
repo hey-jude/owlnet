@@ -18,6 +18,8 @@ Logger createLogger(in CreateOptions opts)
 
 int createCommand(CreateOptions opts, GlobalOptions globalOpts)
 {
+    writeln("commandline: " ~ opts.vmNames ~ opts.args);
+
     foreach(vm; opts.vmNames) {
         writeln("commandline: " ~ ["docker-machine", "create"] ~ vm);
         auto dmd = execute(["docker-machine", "create"] ~ vm);

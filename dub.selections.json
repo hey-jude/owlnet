@@ -1,6 +1,7 @@
 {
 	"fileVersion": 1,
 	"versions": {
+		"backtrace-d": "0.1.2",
 		"button": "0.1.2",
 		"darg": "0.0.4",
 		"diet-ng": "1.2.0",
