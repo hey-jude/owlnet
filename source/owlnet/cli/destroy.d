@@ -9,9 +9,15 @@ import owlnet.cli.options : DestroyOptions, GlobalOptions;
 
 int destroyCommand(DestroyOptions opts, GlobalOptions globalOpts)
 {
-    foreach(vm; opts.vmNames) {
-        writeln("commandline: " ~ ["docker-machine", "rm", "-y"] ~ vm);
-        auto dmd = execute(["docker-machine", "rm", "-y"] ~ vm);
+    if (globalOpts.dryRun) {
+        writeln("opts: " ~ opts.vmNames);
+    }
+    else
+    {
+        auto vm = opts.vmNames;
+        auto cmdline = ["docker-machine", "rm", "-y"] ~ vm;
+        writeln("commandline: " ~ cmdline);
+        auto dmd = execute(cmdline);
         if (dmd.status != 0)
         {
             writeln("Execution failed:\n", dmd.output);
@@ -20,7 +26,6 @@ int destroyCommand(DestroyOptions opts, GlobalOptions globalOpts)
         {
             writeln("Execution succeeded:\n", dmd.output);
         }
-
     }
     return 0; //dmd.status;
 }

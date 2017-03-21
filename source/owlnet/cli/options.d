@@ -20,6 +20,10 @@ struct GlobalOptions
     @Help("Prints help on command line usage.")
     OptionFlag help;
 
+    @Option("dryrun", "n")
+    @Help("Don't make any functional changes. Just print what might happen.")
+    OptionFlag dryRun;
+    
     @Argument("command", Multiplicity.optional)
     string command;
 
@@ -60,21 +64,21 @@ struct CreateOptions
           " complete.")
     OptionFlag verbose;
 
-    @Argument("vmNames", Multiplicity.oneOrMore)
+    @Argument("vmNames")
     @Help("VM names.")
-    string[] vmNames;
+    string vmNames;
 
     @Argument("args", Multiplicity.zeroOrMore)
-    const(string)[] args;
+    string[] args;
 }
 
 @Command("destroy")
 @Description("Destroy VMs.")
 struct DestroyOptions
 {
-    @Argument("vmNames", Multiplicity.oneOrMore)
+    @Argument("vmNames")
     @Help("VM names.")
-    string[] vmNames;
+    string vmNames;
 }
 
 @Command("init")
@@ -196,7 +200,7 @@ int runCommand(Funcs...)(string name, GlobalOptions opts)
         foreach (C; Commands)
         {
             if (C.name == name)
-                return F(parseArgs!Options(opts.args), opts);
+                return F(parseArgs!Options(opts.args, Config.ignoreUnknown), opts);
         }
     }
 
