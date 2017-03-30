@@ -5,6 +5,11 @@
 
 ## Compile
 
+    $ dub build
+
 ## Install
+
+* D language environments
+* docker-machine
 
 ## QuickStart
