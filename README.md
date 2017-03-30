@@ -6,6 +6,7 @@
 ## Compile
 
     $ dub build
+    $ ./owlnet --help
 
 ## Install
 
@@ -13,3 +14,5 @@
 * docker-machine
 
 ## QuickStart
+
+
